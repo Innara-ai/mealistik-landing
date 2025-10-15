@@ -1,4 +1,5 @@
 /* Improved layout for success message - better alignment and spacing */
+
 import { useEffect, useMemo, useRef, useState } from 'react';
 // App.tsx (add these imports at the top)
 import { db } from './firebase';

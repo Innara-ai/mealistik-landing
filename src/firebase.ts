@@ -18,7 +18,6 @@ const firebaseConfig = {
   authDomain: must("VITE_FIREBASE_AUTH_DOMAIN"),
   projectId: must("VITE_FIREBASE_PROJECT_ID"),
   appId: must("VITE_FIREBASE_APP_ID"),
-  // optional
   measurementId: env["VITE_FIREBASE_MEASUREMENT_ID"],
 };
 
