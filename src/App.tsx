@@ -1,4 +1,3 @@
-/* Improved layout for success message - better alignment and spacing */
 import { useEffect, useMemo, useRef, useState } from 'react';
 // App.tsx (add these imports at the top)
 import { db } from './firebase';
@@ -83,10 +82,12 @@ export default function ShowcasePage() {
   const instaHref = appendUTM('https://www.instagram.com/mealistik/');
 
   return (
-    <main style={{ minHeight: '100vh', background: 'linear-gradient(180deg, #1d1a31 0%, #3e3e7a 100%)' }}>
+    <main style={{ minHeight: '100vh', background: '#ffffff' }}>
       <style>{`
         :root { --primary:#9999cc; --accent:#c1c1f9; --deep:#3e3e7a; --white:#ffffff; --text-dark:#1d1a31; }
         * { box-sizing: border-box; }
+        html, body, #root, main { background: var(--white); }
+         * { box-sizing: border-box; }
         .wrap { display:grid; place-items:center; padding:24px; }
         .card { width:100%; max-width:480px; background:var(--white); border-radius:16px; padding:24px; box-shadow:0 10px 30px rgba(0,0,0,0.25); position:relative; }
         .logo-bar { display:flex; align-items:center; gap:8px; }
@@ -104,10 +105,28 @@ export default function ShowcasePage() {
         .contact-card a:hover { text-decoration:underline; }
         form { display:flex; flex-direction:column; gap:14px; margin-top:10px; }
         label { font-size:14px; font-weight:600; color:#1d1a31; }
-        input, select, textarea { width:100%; padding:12px; border:1.5px solid #ccc; border-radius:10px; font-size:15px; }
-        input:focus, select:focus, textarea:focus { border-color:var(--deep); box-shadow:0 0 0 2px rgba(62,62,122,0.25); outline:none; }
+        /* Ensure form controls use white background and dark text */
+        input, select, textarea { width:100%; padding:12px; border:1.5px solid #ccc; border-radius:10px; font-size:15px; background: var(--white); color: var(--text-dark); caret-color: var(--deep); }
+        input::placeholder, textarea::placeholder { color: #8a8a8a; }
+        input:focus, select:focus, textarea:focus { border-color:var(--deep); box-shadow:0 0 0 2px rgba(62,62,122,0.15); outline:none; }
+        
         .check { display:flex; align-items:flex-start; gap:8px; }
-        .check input { width:18px; height:18px; margin-top:2px; accent-color:var(--deep); }
+        .check input[type="checkbox"] {
+          width:18px;
+          height:18px;
+          margin-top:2px;
+          accent-color:var(--deep);
+          background: var(--white);
+          border:1.5px solid #ccc;
+          border-radius:4px;
+          box-shadow:none;
+          -webkit-appearance:checkbox;
+          appearance:checkbox;
+        }
+        .check input[type="checkbox"]:focus {
+          outline:3px solid rgba(62,62,122,0.15);
+          outline-offset:2px;
+        }
         .check span { font-size:14px; line-height:1.4; }
         .hint { text-align:center; font-size:13px; color:#555; margin-top:8px; }
         .error { color:#b00020; background:#fde7ea; padding:10px; border-radius:8px; font-size:14px; }
